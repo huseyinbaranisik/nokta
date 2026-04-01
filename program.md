@@ -6,7 +6,7 @@
 
 ---
 
-## 0. IMMUTABLE INFRA
+## 0. IMMUTABLE INFRA 
 
 The following files are the backbone of the project. Contributors MUST NOT modify them. CI enforces this.
 
