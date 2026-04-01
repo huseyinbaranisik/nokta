@@ -125,7 +125,7 @@ jobs:
   auto-merge:
     needs: spec-score
     runs-on: ubuntu-latest
-    if: success()
+    if: success() && !github.event.pull_request.draft
     permissions:
       contents: write
       pull-requests: write
