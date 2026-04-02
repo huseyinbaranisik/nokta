@@ -136,70 +136,18 @@ These are explicitly out of scope for v0.1. Building any of these will result in
 
 ## 4. DATA CONTRACTS
 
-These TypeScript interfaces are the single source of truth. All components, services, and tests reference these types. They live in `src/features/idea/types.ts`.
+Bu bölüm, Nokta uygulamasının veri yapılarını, fikir olgunlaşma süreçlerini ve depolama kurallarını tanımlar.
+
+### 4.1. Maturity Stages (Olgunluk Aşamaları)
+Fikirler sistem içerisinde dört ana aşamadan geçer. Her aşama bir öncekinin üzerine inşa edilir.
 
 ```typescript
-// === MATURITY STAGES ===
-
 export enum MaturityStage {
-  DOT = "dot",
-  LINE = "line",
-  PARAGRAPH = "paragraph",
-  PAGE = "page",
+  DOT = "dot",           // İlk kıvılcım
+  LINE = "line",         // Bağlantıların kurulması
+  PARAGRAPH = "paragraph", // Detaylı açıklama
+  PAGE = "page",         // Tamamlanmış ürün speki
 }
-
-// === CORE ENTITIES ===
-
-export interface Idea {
-  id: string;
-  title: string;
-  spark: string;
-  maturity: MaturityStage;
-  messages: Message[];
-  spec: IdeaSpec | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Message {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-  timestamp: string;
-  turnNumber: number;
-}
-
-export interface IdeaSpec {
-  problem: string;
-  audience: string;
-  solution: string;
-  successMetrics: string;
-  effortEstimate: string;
-  uniqueness: string;
-}
-
-// === MATURITY TRANSITION RULES ===
-
-export interface MaturityRule {
-  from: MaturityStage;
-  to: MaturityStage;
-  requiredFields: (keyof IdeaSpec)[];
-  minTurns: number;
-}
-
-export const MATURITY_RULES: MaturityRule[] = [
-  { from: MaturityStage.DOT, to: MaturityStage.LINE, requiredFields: [], minTurns: 1 },
-  { from: MaturityStage.LINE, to: MaturityStage.PARAGRAPH, requiredFields: ["problem", "audience"], minTurns: 3 },
-  { from: MaturityStage.PARAGRAPH, to: MaturityStage.PAGE, requiredFields: ["problem", "audience", "solution", "successMetrics", "effortEstimate", "uniqueness"], minTurns: 5 },
-];
-
-// === STORAGE SCHEMA ===
-// AsyncStorage keys: @nokta/ideas → string[] (ID list), @nokta/idea/<uuid> → Idea JSON
-// All reads/writes go through src/features/idea/services/storage.ts
-// Direct AsyncStorage access from components is FORBIDDEN.
-```
-
----
 
 ## 5. SCREEN & FEATURE SPEC
 
