@@ -1,1 +1,8 @@
-404: Not Found
+{
+  "name": "nokta",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "python3 scripts/section_score.py"
+  }
+}
