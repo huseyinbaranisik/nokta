@@ -136,18 +136,64 @@ These are explicitly out of scope for v0.1. Building any of these will result in
 
 ## 4. DATA CONTRACTS
 
-Bu bölüm, Nokta uygulamasının veri yapılarını, fikir olgunlaşma süreçlerini ve depolama kurallarını tanımlar.
+Bu bölüm, Nokta (NAIM) ekosistemindeki fikirlerin veri yapılarını, olgunlaşma süreçlerini ve depolama kurallarını tanımlar. Tüm sistem bu kontratlar üzerinden haberleşir.
 
 ### 4.1. Maturity Stages (Olgunluk Aşamaları)
-Fikirler sistem içerisinde dört ana aşamadan geçer. Her aşama bir öncekinin üzerine inşa edilir.
+Fikirler, gelişim süreçlerine göre aşağıdaki dört ana aşamadan geçer:
 
 ```typescript
+// === MATURITY STAGES ===
 export enum MaturityStage {
-  DOT = "dot",           // İlk kıvılcım
-  LINE = "line",         // Bağlantıların kurulması
-  PARAGRAPH = "paragraph", // Detaylı açıklama
-  PAGE = "page",         // Tamamlanmış ürün speki
+  DOT = "dot",           // İlk fikir kıvılcımı
+  LINE = "line",         // Yapılandırılmış fikir
+  PARAGRAPH = "paragraph", // Detaylandırılmış konsept
+  PAGE = "page",         // Tamamlanmış ürün spesifikasyonu
 }
+
+// === CORE ENTITIES ===
+export interface Idea {
+  id: string;
+  title: string;
+  spark: string;
+  maturity: MaturityStage;
+  messages: Message[];
+  spec: IdeaSpec | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Message {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+  turnNumber: number;
+}
+
+export interface IdeaSpec {
+  problem: string;
+  audience: string;
+  solution: string;
+  successMetrics: string;
+  effortEstimate: string;
+  uniqueness: string;
+}
+
+### 4.2. Geçiş Kuralları (Maturity Transition Rules)
+
+| Başlangıç | Hedef | Zorunlu Alanlar | Min. Mesaj |
+| :--- | :--- | :--- | :--- |
+| DOT | LINE | - | 1 |
+| LINE | PARAGRAPH | problem, audience | 3 |
+| PARAGRAPH | PAGE | problem, audience, solution, metrics, effort, uniqueness | 5 |
+
+### 4.3. Depolama (Storage Schema)
+
+* **AsyncStorage** kullanılır.
+* Anahtarlar: `@nokta/ideas` ve `@nokta/idea/<uuid>`.
+* Tüm erişim `src/features/idea/services/storage.ts` üzerinden yapılmalıdır.
+
+
 
 ## 5. SCREEN & FEATURE SPEC
 
