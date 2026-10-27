@@ -1,5 +1,7 @@
 # NOKTA — NAIM's Orchestrated Knowledge-To-Artifact
 
+**🇬🇧 English (below) · [🇹🇷 Türkçe](#-türkçe)**
+
 ![NOKTA](assets/nokta.jpeg)
 
 > The spec layer of the NAIM loop. NAIM builds. NOKTA thinks first.
@@ -258,3 +260,61 @@ Yes — but you need to beat its current score (100/100). Delete content and the
 
 **Q: Can I contribute to multiple sections?**
 Yes — each in its own branch + its own PR.
+
+
+---
+
+## 🇹🇷 Türkçe
+
+> Bu repo, [19e9/nokta_original](https://github.com/19e9/nokta_original) projesinin bir fork'udur. Yukarıdaki İngilizce rehberin Türkçe özeti aşağıdadır.
+
+### 📝 NOKTA Nedir?
+**NOKTA — NAIM's Orchestrated Knowledge-To-Artifact**, [NAIM](https://github.com/seyyah/naim) ekosisteminin şartname (spec) katmanıdır. NAIM uygulamayı yineleyerek geliştirir; NOKTA ise ilk kod satırından önce *ne* yapılacağını tanımlar. Tek bir fikir kıvılcımı (bir nokta), yönlendirilmiş LLM soruları ile yapılandırılmış bir ürün şartnamesine dönüşür: Nokta → Çizgi → Paragraf → Sayfa.
+
+`program.md`, Nokta mobil uygulamasının Karpathy tarzı şartname dosyasıdır; AI ajanları (Claude Code / Codex) uygulamayı sıfırdan bu dosyadan inşa edebilir. **İnsanlar şartnameyi yazar, makineler kodu.**
+
+**1 dosya. 0 insan incelemesi. Kararı CI verir.**
+
+### 🛤️ Katkı Yolları
+
+| Yol | Ne yapılır? | Dal adı |
+| :--- | :--- | :--- |
+| **A — Şartname düzenleme** | `program.md` içindeki bir bölümü geliştir | `section/04-data-contracts` |
+| **B — Yeni özellik şartnamesi** | `specs/TEMPLATE.md`'yi kopyalayıp 5 bölümü doldur | `spec/<ozellik-adi>` |
+| **C — Uygulama** | Onaylı şartnameden TypeScript / React Native kodu yaz; `tsc`, ESLint ve Jest kapılarını geç | `implement/<ozellik-adi>` |
+
+Her PR'ı CI otomatik olarak 0–100 arası puanlar. Puan `main`'deki mevcut puana **eşit veya yüksekse** otomatik birleşir, düşükse otomatik reddedilir (ratchet / cırcır mantığı: puan asla düşmez).
+
+### 📋 Bölüm Listesi (`program.md`)
+
+| # | Bölüm | İçerik |
+|---|---------|----------|
+| 0 | IMMUTABLE INFRA | Değiştirilmemesi gereken dosyalar |
+| 1 | IDENTITY | ✅ Tamamlandı — referans olarak kullanın |
+| 2 | SETUP PROTOCOL | Sıfırdan çalışan uygulamaya kurulum adımları |
+| 3 | NON-GOALS | v0.1'de yapılmayacaklar |
+| 4 | DATA CONTRACTS | TypeScript arayüzleri ve depolama şeması |
+| 5 | SCREEN & FEATURE SPEC | 3 ekran, UX akışı, bileşen listesi |
+| 6 | UI CONFIG | Yerel JSON tabanlı arayüz yapılandırması |
+| 7 | LLM CONTRACT | Sahte (mock) LLM, prompt şablonu, örnek konuşmalar |
+| 8 | OBJECTIVE FUNCTION | Zorunlu kapılar + tek sayısal metrik |
+| 9 | THE RATCHET LOOP | PR → CI → ölç → tut/geri al döngüsü |
+| 10 | CONTRIBUTION PROTOCOL | Dal, commit ve PR kuralları |
+| 11 | ARCHITECTURAL INVARIANTS | Kod yapısı kuralları |
+| 12 | TESTING PHILOSOPHY | Test standartları ve anti-pattern'ler |
+
+### 🧪 Yerelde Puan Kontrolü
+
+```bash
+python scripts/section_score.py --section 4          # Tek bölüm (Yol A)
+python scripts/section_score.py --all                # Tüm bölümler (Yol A)
+python scripts/section_score.py --spec-file specs/ozellik.md   # Şartname dosyası (Yol B)
+```
+
+### 📏 Kurallar
+1. **Yalnızca `program.md` (Yol A) düzenlenir veya yeni bir `specs/*.md` (Yol B) eklenir.** Checklist YAML'ları, CI iş akışları ve betikler değiştirilemez.
+2. **Bölüm 1 (IDENTITY) tamamdır;** formatını örnek alın.
+3. **Aynı bölümü birden fazla kişi yazabilir;** en yüksek puan birleşir.
+4. **`> TODO:` satırlarını silin;** kaldıkça bölüm puanı düşük kalır.
+5. **AI araçları serbesttir,** ama checklist'i geçmeniz gerekir.
+6. **İngilizce veya Türkçe** yazabilirsiniz; checklist ikisini de destekler.
