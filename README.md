@@ -1,6 +1,29 @@
-# NOKTA — NAIM's Orchestrated Knowledge-To-Artifact
+<div align="center">
 
-**🇬🇧 English (below) · [🇹🇷 Türkçe](#-türkçe)**
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" width="110" alt="Sparkles">
+
+# NOKTA
+
+<img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=22&duration=2600&pause=700&color=111827&center=true&vCenter=true&width=600&lines=Idea%20spark%20%E2%86%92%20structured%20spec;1%20file%20%C2%B7%200%20human%20review%20%C2%B7%20CI%20decides;Fork%20of%2019e9%2Fnokta_original" alt="Idea spark → structured spec">
+
+
+<a href="#-türkçe"><b>🇹🇷 Türkçe</b></a>
+
+</div>
+
+<br>
+
+<table align="center">
+  <tr>
+    <td align="center" width="25%"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Memo.png" width="40" alt="Memo"><br><b>program.md</b><br><sub>the spec</sub></td>
+    <td align="center" width="25%"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Robot.png" width="40" alt="Robot"><br><b>AI builds</b><br><sub>from the spec</sub></td>
+    <td align="center" width="25%"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Bar%20Chart.png" width="40" alt="Bar Chart"><br><b>CI scores</b><br><sub>0–100</sub></td>
+    <td align="center" width="25%"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Locked.png" width="40" alt="Locked"><br><b>Ratchet</b><br><sub>score never drops</sub></td>
+  </tr>
+</table>
+
+---
+
 
 ![NOKTA](assets/nokta.jpeg)
 
@@ -268,14 +291,14 @@ Yes — each in its own branch + its own PR.
 
 > Bu repo, [19e9/nokta_original](https://github.com/19e9/nokta_original) projesinin bir fork'udur. Yukarıdaki İngilizce rehberin Türkçe özeti aşağıdadır.
 
-### 📝 NOKTA Nedir?
+### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Memo.png" width="26" align="center"> NOKTA Nedir?
 **NOKTA — NAIM's Orchestrated Knowledge-To-Artifact**, [NAIM](https://github.com/seyyah/naim) ekosisteminin şartname (spec) katmanıdır. NAIM uygulamayı yineleyerek geliştirir; NOKTA ise ilk kod satırından önce *ne* yapılacağını tanımlar. Tek bir fikir kıvılcımı (bir nokta), yönlendirilmiş LLM soruları ile yapılandırılmış bir ürün şartnamesine dönüşür: Nokta → Çizgi → Paragraf → Sayfa.
 
 `program.md`, Nokta mobil uygulamasının Karpathy tarzı şartname dosyasıdır; AI ajanları (Claude Code / Codex) uygulamayı sıfırdan bu dosyadan inşa edebilir. **İnsanlar şartnameyi yazar, makineler kodu.**
 
 **1 dosya. 0 insan incelemesi. Kararı CI verir.**
 
-### 🛤️ Katkı Yolları
+### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Railway%20Track.png" width="26" align="center"> Katkı Yolları
 
 | Yol | Ne yapılır? | Dal adı |
 | :--- | :--- | :--- |
@@ -285,7 +308,7 @@ Yes — each in its own branch + its own PR.
 
 Her PR'ı CI otomatik olarak 0–100 arası puanlar. Puan `main`'deki mevcut puana **eşit veya yüksekse** otomatik birleşir, düşükse otomatik reddedilir (ratchet / cırcır mantığı: puan asla düşmez).
 
-### 📋 Bölüm Listesi (`program.md`)
+### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" width="26" align="center"> Bölüm Listesi (`program.md`)
 
 | # | Bölüm | İçerik |
 |---|---------|----------|
@@ -303,7 +326,7 @@ Her PR'ı CI otomatik olarak 0–100 arası puanlar. Puan `main`'deki mevcut pua
 | 11 | ARCHITECTURAL INVARIANTS | Kod yapısı kuralları |
 | 12 | TESTING PHILOSOPHY | Test standartları ve anti-pattern'ler |
 
-### 🧪 Yerelde Puan Kontrolü
+### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Test%20Tube.png" width="26" align="center"> Yerelde Puan Kontrolü
 
 ```bash
 python scripts/section_score.py --section 4          # Tek bölüm (Yol A)
@@ -311,10 +334,18 @@ python scripts/section_score.py --all                # Tüm bölümler (Yol A)
 python scripts/section_score.py --spec-file specs/ozellik.md   # Şartname dosyası (Yol B)
 ```
 
-### 📏 Kurallar
+### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Straight%20Ruler.png" width="26" align="center"> Kurallar
 1. **Yalnızca `program.md` (Yol A) düzenlenir veya yeni bir `specs/*.md` (Yol B) eklenir.** Checklist YAML'ları, CI iş akışları ve betikler değiştirilemez.
 2. **Bölüm 1 (IDENTITY) tamamdır;** formatını örnek alın.
 3. **Aynı bölümü birden fazla kişi yazabilir;** en yüksek puan birleşir.
 4. **`> TODO:` satırlarını silin;** kaldıkça bölüm puanı düşük kalır.
 5. **AI araçları serbesttir,** ama checklist'i geçmeniz gerekir.
 6. **İngilizce veya Türkçe** yazabilirsiniz; checklist ikisini de destekler.
+
+
+<br>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" width="22" align="center" alt="Red Heart">
+  <sub>Made by <a href="https://github.com/huseyinbaranisik">Hüseyin Baran Işık</a> · Animated emojis: <a href="https://github.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis">Animated Fluent Emojis</a></sub>
+</div>
